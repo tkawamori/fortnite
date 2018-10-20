@@ -1,0 +1,90 @@
+<% content_for :ogp do %>
+  <meta property="og:title" content="<%= @match.title %>" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="/matches/<%= @match.id %>" />
+  <meta property="og:image" content=<%= "#{root_url}#{@match.image_url}" %> />
+  <meta property="og:site_name"  content="Fortnite match" />
+  <meta property="og:description" content="<%= @match.content %>" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@gamepair" />
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="match-show">
+        <ul class="list-group">
+          <li class="list-group">
+            <div class="card">
+              <img class="card-img-bottom" src="/<%= @match.image_url %>" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title"><%= @match.title %></h5>
+                <p class="card-text"><%= @match.content %></p>
+                <!-- ② -->
+                <p class="card-text"><small class="text-muted"><%= @match.created_at.strftime('%Y/%m/%d %H:%M')  %></small></p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="match-show-share">
+        <div class="social text-center">
+          <a href="https://twitter.com/intent/tweet?text=%e3%83%95%e3%83%ac%e3%83%b3%e3%83%89%e5%8b%9f%e9%9b%86+Sponsored+by+%40GamePair" rel="nofollow" class="btn btn-xl btn-tw" target="_blank">twiterに投稿</a>
+        </div>
+        <p class="share-url"><a onclick="clipURL()" class="url-text">URL</a><i class="far fa-copy"></i></p>
+      </div>
+      <% if user_signed_in? %>
+        <% if @match.user_id == current_user.id %>
+          <div class="match-show-comment">
+            <h2 class="match-list-title">応募一覧</h2>
+            <ul class="list-group">
+              <% @entries.each do |entry| %>
+              <li class="list-group-item">
+                <div><%= entry.user.email %>　<small class="text-muted"><%= entry.created_at.strftime('%Y/%m/%d %H:%M') %></small></div>
+                <div class="list-group-item-comment">
+                  <%= entry.messages %>
+                </div>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        <% else -%>
+        <% if current_user.entries.where(match_id: @match.id).present? %>
+          <div class="intro-button text-center">
+          <a href="javascript:void(0)" class="btn btn-xl">すでに応募しています</a>
+        </div>
+        <% else %>
+          <%= form_with model: [@match, @match.entries.new] do |f| %>
+          <%= f.hidden_field :match_id, value: @match.id %>
+          <div class="form-group form-message">
+            <label for="exampleInputMessage">メッセージ（任意）</label>
+            <%= f.text_area :messages , class: "form-control", placeholder: "例：興味あります。よければDMでご連絡お待ちしております。" %>
+          </div>
+          <div class="intro-button text-center">
+            <%= f.submit "応募する", class: "btn btn-xl" %>
+          </div>
+          <% end %>
+        <% end %>
+      <% end %>
+
+    <% else %>
+      <div class="show-login text-center">
+        <div class="intro-button text-center">
+          <a href="/users/sign_in" class="btn btn-xl">応募する</a>
+        </div>
+        <p>応募するには会員登録・ログインの必要がございます</p>
+      </div>
+      <div class="match-show-comment">
+        <h2 class="match-list-title">ご応募後の流れ</h2>
+        <p>1. 応募するとアカウント情報が相手に届きます。</p>
+        <p>2. 必ず連絡が来るわけではありません。</p>
+        <p>3. 募集者がマッチしたと思った場合メッセージを送ります。</p>
+        <p>4. メッセージは連携SNSで届きます。</p>
+        <p>※ Twitterで応募した場合は「」で「すべてのユーザーからダイレクトメッセージを受信する」 にチェックを入れてください。</p>
+        </ul>
+      </div>
+      <% end %><!-- ③ -->
+
+    </div>
+  </div>
+</div>
