@@ -27,13 +27,13 @@
           </li>
         </ul>
       </div>
+      <% if user_signed_in? %>
       <div class="match-show-share">
         <div class="social text-center">
-          <a href="https://twitter.com/intent/tweet?text=%e3%83%95%e3%83%ac%e3%83%b3%e3%83%89%e5%8b%9f%e9%9b%86+Sponsored+by+%40GamePair" rel="nofollow" class="btn btn-xl btn-tw" target="_blank">twiterに投稿</a>
+          <a href="https://twitter.com/intent/tweet?text=%e3%83%95%e3%83%ac%e3%83%b3%e3%83%89%e5%8b%9f%e9%9b%86+Sponsored+by+%40GamePair" rel="nofollow" class="btn btn-xl btn-tw" target="_blank">twiterでシェア</a>
         </div>
         <p class="share-url"><a onclick="clipURL()" class="url-text">URL</a><i class="far fa-copy"></i></p>
       </div>
-      <% if user_signed_in? %>
         <% if @match.user_id == current_user.id %>
           <div class="match-show-comment">
             <h2 class="match-list-title">応募一覧</h2>
@@ -61,7 +61,7 @@
             <%= f.text_area :messages , class: "form-control", placeholder: "例：興味あります。よければDMでご連絡お待ちしております。" %>
           </div>
           <div class="intro-button text-center">
-            <%= f.submit "応募する", class: "btn btn-xl" %>
+            <%= f.submit "参加する", class: "btn btn-xl" %>
           </div>
           <% end %>
         <% end %>
@@ -70,13 +70,13 @@
     <% else %>
       <div class="show-login text-center">
         <div class="intro-button text-center">
-          <a href="/users/sign_in" class="btn btn-xl">応募する</a>
+          <a href="/users/login" class="btn btn-xl">この募集に参加する</a>
         </div>
-        <p>応募するにはTwitterログインが必要です</p>
+        <p>参加するにはTwitterログインが必要です</p>
       </div>
       <div class="match-show-comment">
-        <h2 class="match-list-title">ご応募後の流れ</h2>
-        <p>1. 応募するとアカウント情報が相手に届きます。</p>
+        <h2 class="match-list-title">参加後の流れ</h2>
+        <p>1. 参加するとアカウント情報が相手に届きます。</p>
         <p>2. 必ず連絡が来るわけではありません。</p>
         <p>3. 募集者がマッチしたと思った場合DMもしくはリプライが届きます。</p>
         </ul>
