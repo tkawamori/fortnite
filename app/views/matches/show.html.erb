@@ -40,7 +40,7 @@
             <ul class="list-group">
               <% @entries.each do |entry| %>
               <li class="list-group-item">
-                <div><%= entry.user.email %>　<small class="text-muted"><%= entry.created_at.strftime('%Y/%m/%d %H:%M') %></small></div>
+                <div><img src="<%= entry.user.avatar %>"> <a href="https://twitter.com/<%= entry.user.nickname %>"><%= entry.user.nickname %></a>　<small class="text-muted"><%= entry.created_at.strftime('%Y/%m/%d %H:%M') %></small></div>
                 <div class="list-group-item-comment">
                   <%= entry.messages %>
                 </div>
@@ -72,15 +72,13 @@
         <div class="intro-button text-center">
           <a href="/users/sign_in" class="btn btn-xl">応募する</a>
         </div>
-        <p>応募するには会員登録・ログインの必要がございます</p>
+        <p>応募するにはTwitterログインが必要です</p>
       </div>
       <div class="match-show-comment">
         <h2 class="match-list-title">ご応募後の流れ</h2>
         <p>1. 応募するとアカウント情報が相手に届きます。</p>
         <p>2. 必ず連絡が来るわけではありません。</p>
-        <p>3. 募集者がマッチしたと思った場合メッセージを送ります。</p>
-        <p>4. メッセージは連携SNSで届きます。</p>
-        <p>※ Twitterで応募した場合は「」で「すべてのユーザーからダイレクトメッセージを受信する」 にチェックを入れてください。</p>
+        <p>3. 募集者がマッチしたと思った場合DMもしくはリプライが届きます。</p>
         </ul>
       </div>
       <% end %><!-- ③ -->

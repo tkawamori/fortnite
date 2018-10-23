@@ -3,12 +3,12 @@
     <div class="col-md-6 offset-md-3">
       <%= form_with model: @match do |f| %>
         <div class="form-group">
-          <label for="exampleInputTitle">募集タイトル</label>
-          <%= f.text_field :title , class: "form-control", placeholder: "募集タイトルを入力してください" %>
+          <label for="exampleInputTitle">タイトル(30文字)</label>
+          <%= f.text_field :title , maxlength: 30, class: "form-control", placeholder: "例:Fortnite(PS4)スクワッドいきましょう！" %>
         </div>
         <div class="form-group">
-          <label for="exampleInputDetail">募集内容詳細</label>
-          <%= f.text_area :content , class: "form-control", placeholder: "例：Techpitを手伝ってくれる人を募集します！" %>
+          <label for="exampleInputDetail">本文:要望(実施時間や人数など)を書くことをおすすめします</label>
+          <%= f.text_area :content , class: "form-control", placeholder: "例：今夜20:00からエンジョイ勢3人募集します！" %>
         </div>
         <div class="intro-button text-center">
            <%= f.submit "募集を作る", class: "btn btn-xl" %>

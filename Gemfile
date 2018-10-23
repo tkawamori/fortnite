@@ -61,3 +61,5 @@ gem 'jquery-rails'
 gem 'rmagick'
 
 gem 'pg', group: :production
+
+gem 'omniauth-twitter'

@@ -24,8 +24,6 @@
       <% end %>
     </div>
     </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
     <%= yield %>
 
@@ -53,7 +51,7 @@
     var text = $('.card-title').text();
 
     //twitterurlのシェア用urlを作成してtwitterurlに挿入
-    var twitterurl = "https://twitter.com/intent/tweet?url=" + document.URL + "&text=" + text + "+Sponsored by+%40GamePair";
+    var twitterurl = "https://twitter.com/intent/tweet?url=" + document.URL + "&text=" + text + "%20%23Fortnite%20%23%e3%83%95%e3%83%ac%e3%83%b3%e3%83%89%e5%8b%9f%e9%9b%86%20Sponsored%20by%20%40GamePair";
 
     //btn-twクラスのリンクをtwitterurlに変更する
     $('.btn-tw').attr('href',twitterurl);
